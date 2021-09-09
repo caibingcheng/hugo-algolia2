@@ -1,13 +1,13 @@
 {
-  "name": "hugo-algolia",
-  "version": "1.2.14",
+  "name": "hugo-algolia2",
+  "version": "1.0.1",
   "description": "Enables search with Algolia in Hugo static sites",
-  "repository": "https://github.com/replicatedhq/hugo-algolia.git",
-  "author": "Sloane Smith <s10dimensional@gmail.com>",
+  "repository": "https://github.com/caibingcheng/hugo-algolia2.git",
+  "author": "bbing <jack_cbc@163.com>",
   "license": "ISC",
   "main": "lib/index.js",
   "bin": {
-    "hugo-algolia": "bin/index.js"
+    "hugo-algolia2": "bin/index.js"
   },
   "scripts": {
     "test": "bin/index.js"
@@ -18,6 +18,7 @@
     "commander": "^2.11.0",
     "glob": "^7.1.2",
     "gray-matter": "^3.0.2",
+    "hugo-algolia2": "^1.0.0",
     "lodash": "^4.17.11",
     "pos": "^0.4.2",
     "remove-markdown": "^0.2.0",

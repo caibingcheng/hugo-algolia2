@@ -1,53 +1,39 @@
-# hugo-algolia
-**Generate and send indices from Hugo static sites for use with Algolia.**
+# hugo-algolia2
 
-An alternative to the [Docsearch](https://community.algolia.com/docsearch/) plugin, allowing for manual index exports. Supports YAML, JSON, and TOML front matter.
+项目改编自[hugo-algolia](https://github.com/replicatedhq/hugo-algolia), 用于hugo静态内容的搜索.
+
+### New Features
+
+- 修复原项目的一些问题
+- 支持自定义URI格式
+- 支持按照文件后缀过滤
 
 ### Installation
 
-Install `hugo-algolia` from [npm](https://npmjs.org)
+从[npm](https://npmjs.org)安装`hugo-algolia2`
 
 ```
-npm install hugo-algolia
+npm install hugo-algolia2
 ```
 
-Or
+或者
 
 ```
-yarn add hugo-algolia
+yarn add hugo-algolia2
 ```
 
 ### How does it work?
-`hugo-algolia` looks into the `/content` folder of your site by default and places a JSON file with the export into the `/public` folder, but if you'd like to use custom inputs and outputs just pass an `-i` or `-o` followed by your path via command line.
 
-#### Example
-In your package.json file:
-
-```
-//Default
-scripts: {
-    "index": "hugo-algolia"
-}
-```
-
-or
-
-```
-scripts: {
-    "index": "hugo-algolia -i \"content/subdir/**\" -o public/my-index.json"
-}
-```
+默认遍历hugo项目的`/content`路径下的文件, 并且按照['html','md']后缀过滤, 并且在`/public`下生成`algolia.json`. 具体配置参数可以使用`hugo-algolia2 --help`.
 
 ### Sending to Algolia
-You can send your index to Algolia by including your API key, app ID, and index name in your config.yaml, which you can find in your Algolia account dashboard. Then, pass an `-s` flag to your `hugo-algolia` command.
+
+在hugo项目根目录下添加配置文件`config.yaml`, 如下:
 
 ```
 ---
-baseURL: "/"
-languageCode: "en-us"
-title: "Your site name"
-theme: "your-theme"
-description: "A cool site!"
+baseURL: /
+uri: :year:month/:slug
 
 algolia:
   index: "index-name"
@@ -56,54 +42,17 @@ algolia:
 ---
 ```
 
-then 
+URI是访问路径, 需要和hugo的配置相同. key需要填写Admin API Key.
 
+配置之后,
 ```
-scripts: {
-    "index-and-send": "hugo-algolia -s"
-}
+hugo-algolia2 -s
 ```
+可以上传algolia配置.
 
-**If you don't want to set your write key in your `config.yaml`, you can also use environment variables. Just set a variable `ALGOLIA_WRITE_KEY` to the write key for your account, and the module will use that instead.**
+### TODOLIST
 
-### What if I don't want to index a specific file?
-That's cool! Just set the `index` param in your file's front matter to `false` and `hugo-algolia` will skip it during the indexing process. Content with `draft: true` will also be ignored.
-
-### Options
-There are a few flags you can use to customize your indices:
-
-* `-m` - Create multiple indices based on the default `index` param in the front matter of each markdown file, or another specified param. 
-	```
-    hugo-algolia -m "[optional-custom-param]"
-	```
-* `-p` - Partially index files using only specified params.
-	```
-    hugo-algolia -p "[param], [param], [param]"
-	```
-* `-all` - By default, `hugo-algolia` skips content that doesn't have an `index` param, or whichever param you specify in your command. If you'd like to index those files, use this flag.
-
-* `--config` - Pass in a custom config file.
-    ```
-    hugo-algolia --config ./mysweetconfig.yaml
-	```
-
-##### You can also combine any of the above commands, including the one's mentioned outside of this section:
-```
-hugo-algolia -m "categories" -p "title, uri, categories" -all 
-```
-
-This command would create multiple indices depending on the category of each `.md` file, but only inlcude the `title`, `uri`, and `categories` information in the output file.
-
-#### A note about TOML
-The `gray-matter` package used in this module does not support TOML front matter out of the box. If you're using TOML in your front matter, just use the `toml` flag in your command.
-
-```
-hugo-algolia --toml
-```
-
-#### A note about duplicated index entries and objectIDs
-
-Algolia assigns each entry in the index an objectID. It uses this attribute as primary key for an entry. If you want to update an entry, you must send the objectID for the entry you want to update. To prevent duplicated content, this package uses the page's URI as objectID. This way, you can generate the index as many times as you want and Algolia will only index content that has changed. If you want to override an objectID for an entry, you can especify it in the frontmatter.
+- [ ] 提供github action
 
 # License
-This project is based on the lunr plugin from https://github.com/dgrigg/hugo-lunr, but adapted for use with the Algolia search engine. It is under the ISC License. 
+同[hugo-algolia](https://github.com/replicatedhq/hugo-algolia), 本项目也使用ISC License.
