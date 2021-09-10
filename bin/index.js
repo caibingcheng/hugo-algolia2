@@ -16,7 +16,7 @@ indexer
   .option(
     "-c, --content-size [value]",
     "Content size to send to Algolia",
-    "5Kb"
+    "20Kb"
   )
   .parse(process.argv);
 
