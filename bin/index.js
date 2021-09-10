@@ -3,7 +3,7 @@
 let indexer = require("commander");
 
 indexer
-  .version("1.0.1")
+  .version("1.0.2")
   .option("-i, --input [value]", "Input files", function (arg) { return arg; }, "content/**")
   .option("-o, --output [value]", "Output files", "public/algolia.json")
   .option("-t, --toml", "Parse with TOML", false)
