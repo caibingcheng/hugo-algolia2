@@ -1,0 +1,42 @@
+name: 'hugo-algolia2'
+description: 'upload hugo posts to algolia'
+inputs:
+  input:
+    description: 'upload path'
+    required: false
+    default: './content/**'
+  output:
+    description: 'algolia.json output'
+    required: false
+    default: 'public/algolia.json'
+  extname:
+    description: 'filter extname'
+    required: false
+    default: '.md,.html'
+  baseurl:
+    description: 'base url'
+    required: false
+    default: '/'
+  uri:
+    description: 'uri format, eg. :year:month/:slug'
+    required: false
+    default: ':year:month/:slug'
+  index:
+    description: 'algolia index name'
+    required: ture
+  apikey:
+    description: 'algolia admin key'
+    required: ture
+  appid:
+    description: 'algolia app id'
+    required: ture
+
+runs:
+  using: 'composite'
+  steps:
+    -run: ${{ github.action_path }}/config.sh ${{ inputs.baseurl }} ${{ inputs.uri }} ${{ inputs.index }} ${{ inputs.apikey }} ${{ inputs.appid }}
+     shell: bash
+    -run: npm install -g hugo-algolia2
+     shell: bash
+    -run: hugo-algolia2 -s -i ${{ inputs.input }} -o ${{ inputs.output }} --extname ${{ inputs.extname }}
+     shell: bash

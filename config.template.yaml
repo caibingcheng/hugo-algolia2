@@ -1,0 +1,9 @@
+---
+baseURL: {%BASE%}
+uri: {%URI%}
+
+algolia:
+  index: "{%INDEX%}"
+  key: "{%APIKEY%}"
+  appID: "{%APPID%}"
+---
