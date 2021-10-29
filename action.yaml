@@ -34,15 +34,14 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    -name: "config"
-     run: ${{ github.action_path }}/config.sh
-     shell: bash
-     env:
-       ALGOLIA_BASEURL: ${{ inputs.baseurl }}
-       ALGOLIA_URI: ${{ inputs.uri }}
-       ALGOLIA_INDEX: ${{ inputs.index }}
-       ALGOLIA_APIKEY: ${{ inputs.apikey }}
-       ALGOLIA_APPID: ${{ inputs.appid }}
-       ALGOLIA_INPUT: ${{ inputs.input }}
-       ALGOLIA_OUTPUT: ${{ inputs.output }}
-       ALGOLIA_EXTNAME: ${{ inputs.extname }}
+     - run: ${{ github.action_path }}/config.sh
+       shell: bash
+       env:
+         ALGOLIA_BASEURL: ${{ inputs.baseurl }}
+         ALGOLIA_URI: ${{ inputs.uri }}
+         ALGOLIA_INDEX: ${{ inputs.index }}
+         ALGOLIA_APIKEY: ${{ inputs.apikey }}
+         ALGOLIA_APPID: ${{ inputs.appid }}
+         ALGOLIA_INPUT: ${{ inputs.input }}
+         ALGOLIA_OUTPUT: ${{ inputs.output }}
+         ALGOLIA_EXTNAME: ${{ inputs.extname }}
