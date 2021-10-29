@@ -34,9 +34,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    -run: ${{ github.action_path }}/config.sh ${{ inputs.baseurl }} ${{ inputs.uri }} ${{ inputs.index }} ${{ inputs.apikey }} ${{ inputs.appid }}
+    -name: "config"
+     run: ${{ github.action_path }}/config.sh
      shell: bash
-    -run: npm install -g hugo-algolia2
-     shell: bash
-    -run: hugo-algolia2 -s -i ${{ inputs.input }} -o ${{ inputs.output }} --extname ${{ inputs.extname }}
-     shell: bash
+     env:
+       ALGOLIA_BASEURL: ${{ inputs.baseurl }}
+       ALGOLIA_URI: ${{ inputs.uri }}
+       ALGOLIA_INDEX: ${{ inputs.index }}
+       ALGOLIA_APIKEY: ${{ inputs.apikey }}
+       ALGOLIA_APPID: ${{ inputs.appid }}
+       ALGOLIA_INPUT: ${{ inputs.input }}
+       ALGOLIA_OUTPUT: ${{ inputs.output }}
+       ALGOLIA_EXTNAME: ${{ inputs.extname }}
