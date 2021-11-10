@@ -1,6 +1,6 @@
 {
   "name": "hugo-algolia2",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Enables search with Algolia in Hugo static sites",
   "repository": "https://github.com/caibingcheng/hugo-algolia2.git",
   "author": "bbing <jack_cbc@163.com>",
