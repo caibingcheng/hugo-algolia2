@@ -1,2 +1,0 @@
-npm install -g hugo-algolia2
-hugo-algolia2 -s -i $ALGOLIA_INPUT -o $ALGOLIA_OUTPUT --extname $ALGOLIA_EXTNAME -b $ALGOLIA_BASEURL -u $ALGOLIA_URI -x $ALGOLIA_INDEX -k $ALGOLIA_APIKEY -a $ALGOLIA_APPID
