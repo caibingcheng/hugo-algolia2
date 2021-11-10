@@ -7,6 +7,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: ${{ contains($GITHUB_REF, 'V.') }}
     steps:
       - uses: actions/checkout@v1
       - uses: JS-DevTools/npm-publish@v1
