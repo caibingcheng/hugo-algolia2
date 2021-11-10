@@ -52,9 +52,27 @@ hugo-algolia2 -s
 ```
 可以上传algolia配置.
 
-### TODOLIST
+### Github Action
+```
+name: deploy
+on:
+  push:
+  workflow_dispatch:
 
-- [ ] 提供github action
+jobs:
+  generate-algolia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: caibingcheng/hugo-algolia2@v1
+        with:
+          input: "./posts/**"
+          output: "./algolia.json"
+          index: ${{ secrets.ALGOLIA_INDEX }}
+          apikey: ${{ secrets.ALGOLIA_APIKEY }}
+          appid: ${{ secrets.ALGOLIA_APPID }}
+
+```
 
 # License
 同[hugo-algolia](https://github.com/replicatedhq/hugo-algolia), 本项目也使用ISC License.
