@@ -36,7 +36,9 @@ runs:
   steps:
      - run: npm install -g hugo-algolia2
        shell: bash
-     - run: hugo-algolia2 -s -i $ALGOLIA_INPUT -o $ALGOLIA_OUTPUT --extname $ALGOLIA_EXTNAME -b $ALGOLIA_BASEURL -u $ALGOLIA_URI -x $ALGOLIA_INDEX -k $ALGOLIA_APIKEY -a $ALGOLIA_APPID
+     - run: pwd && ls -lh
+       shell: bash
+     - run: hugo-algolia2 -s -i "$ALGOLIA_INPUT" -o $ALGOLIA_OUTPUT --extname $ALGOLIA_EXTNAME -b $ALGOLIA_BASEURL -u $ALGOLIA_URI -x $ALGOLIA_INDEX -k $ALGOLIA_APIKEY -a $ALGOLIA_APPID
        shell: bash
        env:
          ALGOLIA_BASEURL: ${{ inputs.baseurl }}
