@@ -3,7 +3,7 @@
 let indexer = require("commander");
 
 indexer
-  .version("1.0.2")
+  .version("1.0.7")
   .option("-i, --input [value]", "Input files", function (arg) { return arg; }, "content/**")
   .option("-o, --output [value]", "Output files", "public/algolia.json")
   .option("-t, --toml", "Parse with TOML", false)
@@ -11,11 +11,11 @@ indexer
   .option("-s, --send", "Send to Algolia", false)
   .option("-m, --multiple-indices [value]", "Multiple categories")
   .option("-p, --custom-index", "Custom index")
-  .option("-b, --baseurl", "Base Url")
-  .option("-u, --uri", "URI")
-  .option("-x, --index", "Index")
-  .option("-k, --key", "Key")
-  .option("-a, --appid", "App ID")
+  .option("-b, --baseurl", "Base Url", "")
+  .option("-u, --uri", "URI", "")
+  .option("-x, --index", "Index", "")
+  .option("-k, --key", "Key", "")
+  .option("-a, --appid", "App ID", "")
   .option("--config [value]", "Config file", "./config.yaml")
   .option("--extname [value]", "File extnames", ".md,.html")
   .option(
